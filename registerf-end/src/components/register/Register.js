@@ -93,6 +93,7 @@ const handleOtpSubmit = async (e) => {
 
     setOtpVerified(true); // OTP verified successfully
     alert('OTP verified successfully! Registration complete.');
+    
   } catch (error) {
     console.error('Error:', error);
     setError('An error occurred. Please try again.');

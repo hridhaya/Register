@@ -136,7 +136,7 @@ server.post('/send-otp', async (req, res) => {
         const otpExpires = Date.now() + 10 * 60 * 1000; // OTP expires in 10 minutes
 
         // Save user with OTP
-        let regUser = new RegUser({
+        const regUser = new RegUser({
             username,
             email,
             otp,
@@ -155,35 +155,39 @@ server.post('/send-otp', async (req, res) => {
     }
 });
 
+
+// API to verify OTP
 // API to verify OTP
 server.post('/verify-otp', async (req, res) => {
     try {
-      const { email, otp } = req.body;
-  
-      const user = await RegUser.findOne({ email });
-    //   console.log(user);
-    //   console.log(user.otp);
-      if (user.otp !== otp) {
-        
-        return res.status(400).json({ message: 'Invalid OTP' });
-      }
-  
-      if (Date.now() > user.otpExpires) {
-        return res.status(400).json({ message: 'OTP has expired' });
-      }
-  
-      // OTP is valid, now clear OTP and expiration time
-      user.otp = undefined; // Clear OTP after successful verification
-      user.otpExpires = undefined;
-      await user.save();
-  
-      res.json({ message: 'OTP verified successfully' });
+        const { email, otp } = req.body;
+
+        const user = await RegUser.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        if (user.otp !== otp) {
+            return res.status(400).json({ message: 'Invalid OTP' });
+        }
+
+        if (Date.now() > user.otpExpires) {
+            return res.status(400).json({ message: 'OTP has expired' });
+        }
+
+        // OTP is valid, now clear OTP and expiration time
+        user.otp = undefined;
+        user.otpExpires = undefined;
+        await user.save();
+
+        res.json({ message: 'OTP verified successfully' });
     } catch (error) {
-      console.error('Error verifying OTP:', error);
-      res.status(500).json({ error: 'Failed to verify OTP' });
+        console.error('Error verifying OTP:', error);
+        res.status(500).json({ error: 'Failed to verify OTP' });
     }
-  });
-  
+});
+
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
