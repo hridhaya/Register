@@ -20,7 +20,7 @@ const verifyAadhaarNumber = async (req, res) => {
     const response = await fetch('https://api.apyhub.com/validate/aadhaar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',
-            'apy-token': 'APY0PsSnp0EVHhq1bpY1pDDmFr2XEK7LaDIZNecRhjicGrmpVpITD7hlxVPsi1Sao' 
+            'apy-token':process.env.APY_TOKEN 
          },
         body: JSON.stringify({ aadhaar : aadhaarNumber}),
    } );
