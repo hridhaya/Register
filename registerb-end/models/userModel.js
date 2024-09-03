@@ -5,7 +5,10 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  otp: { type: String } // Add OTP field
+  otp: { type: String }, 
+  phoneNumber:{type:String, required: true},
+  aadhaarNumber: { type: String, required: true},
+  // dob:{type:String, required: true},
 });
 
 // Create a model from the schema

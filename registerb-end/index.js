@@ -2,6 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
+const mobileOtpRoutes = require('./routes/mobileOtpRoutes');
+const aadhaarRoutes = require('./routes/aadhaarRoutes');
+const panRoutes = require('./routes/panRoutes');
+const gstRoutes = require('./routes/gstRoutes');
+
+
+
 require('dotenv').config();
 
 // MongoDB connection
@@ -27,8 +34,13 @@ const app = express();
 app.use(express.json());
 app.use(cors()); // Enable CORS
 
-// Use the authentication routes
+// Using routes
 app.use('/auth', authRoutes);
+app.use('/mobile-otp', mobileOtpRoutes);
+app.use('/api/aadhaar', aadhaarRoutes);
+app.use('/api/pan', panRoutes);
+app.use('/api/gst', gstRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

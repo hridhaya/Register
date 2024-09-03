@@ -1,15 +1,24 @@
 'use client';
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from "next/navigation";
 
 interface FormData {
   username: string;
   email: string;
+  phoneNumber:string;
+  aadhaarNumber:string;
+  // dob:string;
 }
 
 export default function Register() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState<FormData>({
     username: '',
     email: '',
+    phoneNumber:'',
+    aadhaarNumber:'',
+    // dob:'',
   });
   const [otp, setOtp] = useState<string>(''); // State to store the OTP entered by the user
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,7 +33,6 @@ export default function Register() {
       [e.target.name]: e.target.value,
     });
   };
-
   // OTP input change handler
   const handleOtpChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOtp(e.target.value);
@@ -37,7 +45,7 @@ export default function Register() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:5000/auth/send-otp', { // Updated to match the route in authRoutes
+      const response = await fetch('http://localhost:5000/auth/send-otp', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -99,6 +107,7 @@ export default function Register() {
 
       setOtpVerified(true); // OTP verified successfully
       alert('OTP verified successfully! Registration complete.');
+      router.push(`/phoneOtp`);
     } catch (error) {
       console.error('Error:', error);
       setError('An error occurred. Please try again.');
@@ -137,6 +146,43 @@ export default function Register() {
               style={{ width: '100%', padding: '8px', margin: '5px 0' }}
             />
           </div>
+           {/*3. Phone Number */}
+        <div style={{ marginBottom: "10px" }}>
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            placeholder="Phone Number"
+            onChange={handleChange}
+            required
+            style={{ width: "100%", padding: "8px", margin: "5px 0" }}
+          />
+        </div>
+
+        {/*4. Aadhaar Number*/}
+        <div style={{ marginBottom: "10px" }}>
+          <input
+            type="text"
+            name="aadhaarNumber"
+            value={formData.aadhaarNumber}
+            placeholder="Aadhaar Number"
+            onChange={handleChange}
+            required
+            style={{ width: "100%", padding: "8px", margin: "5px 0" }}
+          />
+        </div>
+
+        {/* <div style={{ marginBottom: "10px" }}>
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            placeholder="Date Of Birth"
+            onChange={handleChange}
+            required
+            style={{ width: "100%", padding: "8px", margin: "5px 0" }}
+         />
+        </div>  */}
 
           {error && <p style={{ color: 'red' }}>{error}</p>}
 

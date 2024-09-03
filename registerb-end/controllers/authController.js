@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 const sendOtp = async (email, otp) => {
   try {
     const mailOptions = {
-      from: `"Your Name" <${process.env.EMAIL_ID}>`, // sender address
+      from: `"OTP Sender" <${process.env.EMAIL_ID}>`, // sender address
       to: email, // recipient address
       subject: 'Your OTP Code', // Subject line
       text: `Your OTP code is ${otp}. It is valid for 10 minutes.`, // plain text body
@@ -38,14 +38,20 @@ const sendOtp = async (email, otp) => {
 
 // Controller to handle sending OTP
 const sendOtpController = async (req, res) => {
-  const { username, email } = req.body;
+  const { username, email, phoneNumber, aadhaarNumber } = req.body;
+  // console.log(req.body);
 
   try {
     // Check if the user already exists
     let user = await User.findOne({ email });
     if (!user) {
       // Create a new user if not found
-      user = new User({ username, email });
+      user = new User({ username, email, phoneNumber, aadhaarNumber });
+    }else {
+      // Update the existing user's details
+      user.username = username;
+      user.phoneNumber = phoneNumber;
+      user.aadhaarNumber = aadhaarNumber;
     }
 
     // Generate and send OTP
