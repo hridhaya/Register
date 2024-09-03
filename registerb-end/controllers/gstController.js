@@ -23,8 +23,8 @@ const verifyGstNumber = async (req, res) => {
     const response = await fetch('https://gst-verification.p.rapidapi.com/v3/tasks/sync/verify_with_source/ind_gst_certificate', {
       method: 'POST',
       headers: {
-        'x-rapidapi-key': '2c3c526e62mshfa8e03dab15338cp1bae18jsnb5e62bc7fca7',
-        'x-rapidapi-host': 'gst-verification.p.rapidapi.com',
+        'x-rapidapi-key': process.env.RAPID_APIKEY_GST ,
+        'x-rapidapi-host':  process.env.RAPID_APIHOST_GST,
         'Content-Type': 'application/json',
         
       },
