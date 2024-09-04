@@ -1,12 +1,10 @@
 'use client';
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 export default function PhoneOtpPage() {
 
   const router = useRouter();
-
 
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
@@ -15,14 +13,17 @@ export default function PhoneOtpPage() {
   const [otpSent, setOtpSent] = useState<boolean>(false);
   const [otpVerified, setOtpVerified] = useState<boolean>(false);
 
+  
   const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(e.target.value);
   };
-
+  
+// change otp
   const handleOtpChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOtp(e.target.value);
   };
 
+// send otp
   const handleSendOtp = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -53,6 +54,7 @@ export default function PhoneOtpPage() {
     }
   };
 
+// verify otp
   const handleVerifyOtp = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -75,6 +77,8 @@ export default function PhoneOtpPage() {
 
       setOtpVerified(true);
       alert('OTP verified successfully!');
+      router.push(`/aadhaarVerify`);
+
     } catch (error) {
       console.error('Error:', error);
       setError('An error occurred. Please try again.');

@@ -13,12 +13,12 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
 const sendMobileOtpController = async (req, res) => {
-  const { username, email, phoneNumber, aadhaarNumber } = req.body;
+  const {phoneNumber} = req.body;
 
   try {
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
+    
     // Send OTP using Twilio
     await client.messages.create({
       body: `Your OTP code is ${otp}. It is valid for 10 minutes.`,
@@ -28,7 +28,6 @@ const sendMobileOtpController = async (req, res) => {
 
     // Find the user by phoneNumber
     let user = await User.findOne({ phoneNumber });
-
     if (!user) {
       // If user doesn't exist, create a new user
       user = new User({phoneNumber});
@@ -43,7 +42,7 @@ const sendMobileOtpController = async (req, res) => {
     res.status(200).json({ message: 'OTP sent to your mobile number' });
   } catch (error) {
     console.error('Error sending mobile OTP:', error);
-    res.status(500).json({ message: 'Failed to send OTP' });
+    res.status(500).json({ message: 'Failed to send OTP!!!!!' });
   }
 };
 

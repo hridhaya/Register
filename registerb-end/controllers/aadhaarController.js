@@ -1,7 +1,6 @@
-// controllers/aadhaarController.js
-const User = require('../models/userModel'); // Adjust the path as per your project structure
+const User = require('../models/userModel');
 
-// Simulated Aadhaar verification (replace with actual API call if available)
+// Simulated Aadhaar verification 
 const verifyAadhaar = (aadhaarNumber) => {
   // Simulate Aadhaar verification logic, e.g., check length or use a regex pattern
   const aadhaarPattern = /^\d{12}$/;
@@ -16,7 +15,6 @@ const verifyAadhaarNumber = async (req, res) => {
   }
 
   try {
-    // Update the user's Aadhaar number in the database
     const response = await fetch('https://api.apyhub.com/validate/aadhaar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',
@@ -26,9 +24,6 @@ const verifyAadhaarNumber = async (req, res) => {
    } );
     const dataResponse= await response.json();
 console.log(dataResponse);
-    // if (!user) {
-    //   return res.status(404).json({ error: 'User not found' });
-    // }
 if (response.ok){
     return res.status(200).json({ message: 'Aadhaar verified successfully', dataResponse});
 }

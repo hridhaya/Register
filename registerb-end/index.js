@@ -7,6 +7,7 @@ const aadhaarRoutes = require('./routes/aadhaarRoutes');
 const panRoutes = require('./routes/panRoutes');
 const gstRoutes = require('./routes/gstRoutes');
 const lookupRoutes = require('./routes/lookupRoutes');
+const bankacctRoutes = require('./routes/bankacctRoutes');
 
 
 
@@ -43,7 +44,7 @@ app.use('/api/aadhaar', aadhaarRoutes);
 app.use('/api/pan', panRoutes);
 app.use('/api/gst', gstRoutes);
 app.use('/api/pinCode', lookupRoutes);
-
+app.use('/api/bankAcct', bankacctRoutes);
 
 
 const PORT = process.env.PORT || 5000;

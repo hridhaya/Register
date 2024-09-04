@@ -1,12 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 
+
 const AddressLookup= () => {
   const [pinCode, setPinCode] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState('');
 
   const handleVerify = async () => {
+  // const router = useRouter();
     
 
     setIsLoading(true);
@@ -24,13 +26,7 @@ const AddressLookup= () => {
         if (data.Status=== 'Success') {
         //   setMessage('Found');
           const { Name: city, District: district, State: state } = data.PostOffice[0];
-        setMessage(`City: ${city}
-            District: ${district}
-             State: ${state}`);
-      
-        //   const city=data.PostOffice[0].Name;
-        //   const b=data.PostOffice[0].District;
-        //   const a=data.PostOffice[0].State;
+        setMessage(`City: ${city}\nDistrict: ${district}\nState: ${state}`);
 
         } else {
           setMessage('Not Found');
@@ -69,7 +65,7 @@ const AddressLookup= () => {
       >
         {isLoading ? 'Searching...' : 'Search'}
       </button>
-      {message && <p>{message}</p>}
+      {message && <pre>{message}</pre>}
     </div>
   );
 };

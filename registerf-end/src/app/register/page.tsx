@@ -146,7 +146,7 @@ export default function Register() {
               style={{ width: '100%', padding: '8px', margin: '5px 0' }}
             />
           </div>
-           {/*3. Phone Number */}
+        
         <div style={{ marginBottom: "10px" }}>
           <input
             type="tel"
@@ -159,7 +159,6 @@ export default function Register() {
           />
         </div>
 
-        {/*4. Aadhaar Number*/}
         <div style={{ marginBottom: "10px" }}>
           <input
             type="text"

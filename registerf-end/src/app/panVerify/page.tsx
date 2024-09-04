@@ -1,8 +1,11 @@
 'use client';
 import React, { useState } from 'react';
+import { useRouter } from "next/navigation";
 
 
 const PanVerify = () => {
+  const router = useRouter();
+
   const [panNumber, setPanNumber] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState('');
@@ -22,6 +25,8 @@ const PanVerify = () => {
         setMessage(data.message);
         if (data.result.link_status === true) {
           setMessage('PAN verified');
+      router.push(`/gstVerify`);
+
         } else {
           setMessage('Invalid PAN');
         }
