@@ -44,6 +44,8 @@ const verifyBankAcct = async (req, res) => {
 
     const dataResponse = await response.json();
     const request_id = dataResponse.request_id;
+    console.log(dataResponse,"ghfjgfkyt");
+
     console.log(request_id,"hhhhhh");
 
     if (request_id) {
@@ -61,7 +63,7 @@ const verifyBankAcct = async (req, res) => {
 // VERIFING THE ACCT
 const BankAcctVerified = async (req, res) => {
   const { request_id } = req.query; // Use req.query for query parameters
-  console.log(request_id,"hggggggggg");
+  // console.log(request_id,"hggggggggg");
   try {
     const response = await fetch(`https://indian-bank-account-verification.p.rapidapi.com/v3/tasks?request_id=${request_id}`, {
       method: "GET",
@@ -73,7 +75,7 @@ const BankAcctVerified = async (req, res) => {
 
     const dataResponse = await response.json();
   const verify = dataResponse[0]?.result?.status; 
-    console.log(verify);
+    // console.log(verify);
     if (verify === "id_found") {
       return res
         .status(200)

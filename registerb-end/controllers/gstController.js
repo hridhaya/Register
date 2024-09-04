@@ -38,8 +38,7 @@ const verifyGstNumber = async (req, res) => {
     });
 
     const dataResponse = await response.json();
-    console.log(dataResponse);
-
+    
     if (response.ok) {
       return res.status(200).json({ message: 'GST verified successfully', dataResponse });
     } else {

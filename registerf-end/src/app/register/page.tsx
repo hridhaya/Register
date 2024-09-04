@@ -7,7 +7,7 @@ interface FormData {
   email: string;
   phoneNumber:string;
   aadhaarNumber:string;
-  // dob:string;
+  dob:string;
 }
 
 export default function Register() {
@@ -18,7 +18,7 @@ export default function Register() {
     email: '',
     phoneNumber:'',
     aadhaarNumber:'',
-    // dob:'',
+    dob:'',
   });
   const [otp, setOtp] = useState<string>(''); // State to store the OTP entered by the user
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -171,7 +171,7 @@ export default function Register() {
           />
         </div>
 
-        {/* <div style={{ marginBottom: "10px" }}>
+        <div style={{ marginBottom: "10px" }}>
           <input
             type="date"
             name="dob"
@@ -181,7 +181,7 @@ export default function Register() {
             required
             style={{ width: "100%", padding: "8px", margin: "5px 0" }}
          />
-        </div>  */}
+        </div> 
 
           {error && <p style={{ color: 'red' }}>{error}</p>}
 

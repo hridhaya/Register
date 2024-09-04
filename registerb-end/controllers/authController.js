@@ -38,7 +38,7 @@ const sendOtp = async (email, otp) => {
 
 // Controller to handle sending OTP
 const sendOtpController = async (req, res) => {
-  const { username, email, phoneNumber, aadhaarNumber } = req.body;
+  const { username, email, phoneNumber, aadhaarNumber , dob} = req.body;
   // console.log(req.body);
 
   try {
@@ -46,12 +46,13 @@ const sendOtpController = async (req, res) => {
     let user = await User.findOne({ email });
     if (!user) {
       // Create a new user if not found
-      user = new User({ username, email, phoneNumber, aadhaarNumber });
+      user = new User({ username, email, phoneNumber, aadhaarNumber ,dob});
     }else {
       // Update the existing user's details
       user.username = username;
       user.phoneNumber = phoneNumber;
       user.aadhaarNumber = aadhaarNumber;
+      user.dob = dob;
     }
 
     // Generate and send OTP

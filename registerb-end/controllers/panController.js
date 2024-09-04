@@ -23,7 +23,7 @@ const verifyPanNumber = async (req, res) => {
     const response = await fetch('https://aadhaar-number-verification-api-using-pan-number.p.rapidapi.com/api/validation/pan_to_aadhaar', {
       method: 'POST',
       headers: {
-        'x-rapidapi-key': '2c3c526e62mshfa8e03dab15338cp1bae18jsnb5e62bc7fca7',
+        'x-rapidapi-key': '7760a544e7mshfde08b92175a535p18f04ajsn408e720f1654',
     'x-rapidapi-host': 'aadhaar-number-verification-api-using-pan-number.p.rapidapi.com',
         'Content-Type': 'application/json',
       },

@@ -8,7 +8,7 @@ const userSchema = new Schema({
   otp: { type: String }, 
   phoneNumber:{type:String, required: true},
   aadhaarNumber: { type: String, required: true},
-  // dob:{type:String, required: true},
+  dob:{type:String, required: true},
 });
 
 // Create a model from the schema
