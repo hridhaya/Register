@@ -44,9 +44,9 @@ const verifyBankAcct = async (req, res) => {
 
     const dataResponse = await response.json();
     const request_id = dataResponse.request_id;
-    console.log(dataResponse,"ghfjgfkyt");
+    // console.log(dataResponse,"ghfjgfkyt");
 
-    console.log(request_id,"hhhhhh");
+    // console.log(request_id,"hhhhhh");
 
     if (request_id) {
       return res
