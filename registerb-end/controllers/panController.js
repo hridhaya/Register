@@ -1,5 +1,3 @@
-const User = require('../models/userModel'); 
-
 
 const verifyPAN = (panNumber) => {
   // PAN number validation pattern (5 letters, 4 digits, 1 letter)

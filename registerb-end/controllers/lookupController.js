@@ -1,4 +1,4 @@
-const User = require('../models/userModel'); 
+
 
 // Function to validate pincode (6-digit number)
 const validatePincode = (pinCode) => {

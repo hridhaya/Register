@@ -1,4 +1,3 @@
-const User = require("../models/userModel");
 
 const verifyAcct = (acctNumber, ifscCode) => {
   // Bank account number verification logic (9 to 18 digits)
